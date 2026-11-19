@@ -46,3 +46,11 @@ export const contact = {
   linkedin: "https://www.linkedin.com/in/alvinespino/",
   github: "https://github.com/vinespn",
 };
+
+// The public address of the site. Set NEXT_PUBLIC_SITE_URL on the host in production.
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+).replace(/\/$/, "");
+
+export const seoDescription =
+  "Senior Full-Stack WordPress Developer with 20+ years of experience: custom themes and plugins, WooCommerce, integrations and performance optimization.";
