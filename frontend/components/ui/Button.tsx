@@ -9,7 +9,7 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0";
 
 const variants = {
   primary: "bg-accent text-accent-foreground hover:opacity-90",

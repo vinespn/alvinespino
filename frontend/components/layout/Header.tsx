@@ -4,9 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { navItems, site } from "@/lib/site";
 import { ThemeToggle } from "./ThemeToggle";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+
+  const pathname = usePathname();
+  const [active, setActive] = useState("");
+  // Only highlight a section while we're on the home page.
+  const current = pathname === "/" ? active : "";
 
   // Close the mobile menu when Escape is pressed.
   useEffect(() => {
@@ -15,8 +21,28 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // Highlight the nav link for the section the visitor is reading.
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.getElementById(item.href.replace("/#", "")))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        }
+      },
+      // A thin band around the middle of the screen decides the "current" section.
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [pathname]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+    <header className="border-border bg-background/80 sticky top-0 z-50 border-b backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
         <Link href="/" className="font-semibold tracking-tight">
           {site.name}
@@ -24,15 +50,19 @@ export function Header() {
 
         {/* Desktop navigation */}
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm text-muted transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const isActive = current === item.href.replace("/#", "");
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive ? "true" : undefined}
+                className={`hover:text-foreground text-sm transition-colors ${isActive ? "text-foreground" : "text-muted"}`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
           <ThemeToggle />
         </nav>
 
@@ -45,7 +75,7 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label="Toggle menu"
-            className="flex size-9 items-center justify-center rounded-full border border-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="border-border focus-visible:outline-accent flex size-9 items-center justify-center rounded-full border focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <svg
               viewBox="0 0 24 24"
@@ -70,7 +100,7 @@ export function Header() {
         <nav
           id="mobile-menu"
           aria-label="Mobile"
-          className="border-t border-border bg-background md:hidden"
+          className="border-border bg-background border-t md:hidden"
         >
           <ul className="mx-auto max-w-6xl px-6 py-4">
             {navItems.map((item) => (

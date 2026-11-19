@@ -10,7 +10,7 @@ export const site = {
 export const navItems = [
   { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
-  { label: "Projects", href: "/#projects" },
+  //{ label: "Projects", href: "/#projects" },
   { label: "Experience", href: "/#experience" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -42,7 +42,7 @@ export const contact = {
   availability:
     "Open to remote opportunities. Available Monday to Friday, with flexibility for US and Australian business hours.",
   // Fill these in. Empty values are simply not shown.
-  email: "",
-  linkedin: "",
-  github: "",
+  email: "alvinespino@gmail.com",
+  linkedin: "https://www.linkedin.com/in/alvinespino/",
+  github: "https://github.com/vinespn",
 };

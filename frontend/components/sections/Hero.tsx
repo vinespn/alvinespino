@@ -17,13 +17,13 @@ export function Hero() {
     <Section className="pt-16 md:pt-24">
       <div className="grid items-center gap-12 md:grid-cols-2">
         <div>
-          <p className="font-mono text-sm text-accent">
+          <p className="text-accent font-mono text-sm">
             {site.name} · {site.title}
           </p>
           <h1 className="mt-4 text-5xl font-semibold tracking-tight md:text-7xl">
             {site.headline}
           </h1>
-          <p className="mt-6 max-w-lg text-lg text-muted">{site.description}</p>
+          <p className="text-muted mt-6 max-w-lg text-lg">{site.description}</p>
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/#projects">View My Projects</Button>
@@ -36,10 +36,11 @@ export function Hero() {
             className="mt-10 flex flex-wrap gap-2"
             aria-label="Core technologies"
           >
-            {heroStack.map((tech) => (
+            {heroStack.map((tech, i) => (
               <li
                 key={tech}
-                className="rounded-full border border-border px-3 py-1 font-mono text-xs text-muted"
+                style={{ animationDelay: `${300 + i * 60}ms` }}
+                className="border-border text-muted motion-safe:animate-fade-up rounded-full border px-3 py-1 font-mono text-xs"
               >
                 {tech}
               </li>
@@ -50,12 +51,13 @@ export function Hero() {
         {/* Decorative code card: hidden from screen readers */}
         <div
           aria-hidden="true"
-          className="overflow-hidden rounded-xl border border-border bg-surface shadow-sm"
+          style={{ animationDelay: "200ms" }}
+          className="border-border bg-surface motion-safe:animate-fade-up overflow-hidden rounded-xl border shadow-sm"
         >
-          <div className="flex gap-2 border-b border-border px-4 py-3">
-            <span className="size-3 rounded-full bg-border" />
-            <span className="size-3 rounded-full bg-border" />
-            <span className="size-3 rounded-full bg-border" />
+          <div className="border-border flex gap-2 border-b px-4 py-3">
+            <span className="bg-border size-3 rounded-full" />
+            <span className="bg-border size-3 rounded-full" />
+            <span className="bg-border size-3 rounded-full" />
           </div>
           <pre className="overflow-x-auto p-5 font-mono text-sm leading-relaxed">
             <code>{snippet}</code>
