@@ -24,3 +24,16 @@ export const heroStack = [
   "JavaScript",
   "MySQL",
 ];
+
+export const about = {
+  paragraphs: [
+    "I'm a full-stack web developer based in the Philippines with more than 20 years of experience, the last decade focused on WordPress and WooCommerce. I started on Classic ASP and .NET, and that back-end background still shapes how I approach WordPress: as an application platform, not just a page builder.",
+    "Over the past eight years I managed development, deployment, security and support for 200+ WordPress sites for a US-based company, handling everything from DNS and migrations to performance and troubleshooting. Before that I built custom themes and plugins from design handoff to launch.",
+    "I work independently, communicate clearly, and I'm comfortable overlapping with US and Australian business hours.",
+  ],
+  stats: [
+    { value: "20+", label: "Years in web development" },
+    { value: "200+", label: "WordPress sites managed" },
+    { value: "10", label: "Years of professional WordPress work" },
+  ],
+};
