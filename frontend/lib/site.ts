@@ -37,3 +37,12 @@ export const about = {
     { value: "10", label: "Years of professional WordPress work" },
   ],
 };
+
+export const contact = {
+  availability:
+    "Open to remote opportunities. Available Monday to Friday, with flexibility for US and Australian business hours.",
+  // Fill these in. Empty values are simply not shown.
+  email: "",
+  linkedin: "",
+  github: "",
+};
