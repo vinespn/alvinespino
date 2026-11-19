@@ -1,9 +1,5 @@
+import { Hero } from "@/components/sections/Hero";
+
 export default function Home() {
-  return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-4xl font-semibold tracking-tight">
-        Alvin Espino: Portfolio in progress
-      </h1>
-    </main>
-  );
+  return <Hero />;
 }

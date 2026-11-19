@@ -61,3 +61,8 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Offset anchor targets so the sticky header doesn't cover them */
+section[id] {
+  scroll-margin-top: 4rem;
+}
